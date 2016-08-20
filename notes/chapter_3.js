@@ -4,17 +4,35 @@
 (1) How do functions help us?
 (2) What about the scope of functions?
 (3) Two things to be aware of when making calls to functions. (infinite recurision) (if statements)
-(4) Closure
-(5) Recursion
-(6) Growing functions
-(7) Side effects
+(4) Two ways to describe functions (expression vs. named)
+(5) Describe closure
+(6) Describe recursion
+(7) What is a pure function?
 
 */
 
+// (1)
 // Functions:
 // functions wrap a piece of a program into a container
 // functions reduce repetition, serves as documentation, isolates programs from each other
 
+// functions have optional parameters and a body
+var square = function(x) {
+  return x * x;
+};
+
+// call square with the argument 2
+console.log(square(2)); // → returns a number 4
+
+var makeNoise = function() {
+  console.log("Blah!");
+};
+
+// call makeNoise with no args
+
+console.log(makeNoise()); // → executes Blah! and returns undefined
+
+// (2)
 // Scope:
 // variables inside the function are local in scope to them.  
 // variables outside the function are global in scope to them.
@@ -51,22 +69,8 @@ var landscape = function() {
 
 console.log(landscape());
 
-// functions have optional parameters and a body
-var square = function(x) {
-	return x * x;
-};
 
-// call square with the argument 2
-console.log(square(2));	// → returns a number 4
-
-var makeNoise = function() {
-	console.log("Blah!");
-};
-
-// call makeNoise with no args
-
-console.log(makeNoise());	// → executes Blah! and returns undefined
-
+// (4)
 // Another way to declare functions
 // It is moved to the bottom because top-down point of flow doesn't matter
 console.log("The future says:", future());
@@ -76,6 +80,7 @@ function future() {
 }
 
 
+// (3)
 // Do NOT put functions inside of if statements
 function example() {
   function a() {} // Okay
@@ -94,7 +99,7 @@ function egg() {
 }
 console.log(chicken() + " came first.");
 
-// Closure
+// Closure (5)
 // Being able to reference a specific instance of a local variables in an
 // enclosing function--is called closure.  A function closes over
 // some local variables is called a closure.
@@ -113,7 +118,7 @@ console.log(twice(5));
 // → 10
 
 
-// Recursion
+// Recursion (6)
 // It is perfectly okay for a function to call itself, as long as it takes care not to overflow the stack.
 
 function power(base, exponent) {
@@ -125,3 +130,7 @@ function power(base, exponent) {
 
 console.log(power(2, 3));
 // → 8
+
+
+// (7) A pure function works in ANY CONTEXT and always returns a VALUE (no side effects)
+// Think of the Math.sqrt() for example
